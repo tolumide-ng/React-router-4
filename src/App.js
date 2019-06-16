@@ -43,6 +43,7 @@ const App = () => (
             <h1>{new URLSearchParams(location.search).get('id')}</h1>
         </div>
         )} />
+        <Route render={() => <h1>Page Not Found</h1>}/>
       </Switch>
     </div>
   </Router>
