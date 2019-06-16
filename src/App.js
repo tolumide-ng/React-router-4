@@ -15,6 +15,7 @@ const Links = () => (
     <NavLink to={{pathname: '/about'}}>About</NavLink>
     <NavLink replace to='/contact'>Contact</NavLink>
     <NavLink to='/page/112'>Page</NavLink>
+    <NavLink to='/12-12-2013.rr'>RegularExpressions</NavLink>
   </nav>
 )
 
@@ -27,6 +28,14 @@ const App = () => (
       <Route path='/contact' render={() => <h1>Contact Page</h1>} />
       {/* Adding the question mark to the end of the parameter on the route path makes it optional for the user */}
       <Route path='/page/:number?' render={({match}) => (<h2>Display Number: {match.params.number}</h2>)} />
+      {/* Using regular expressions to validate url matches */}
+      <Route path='/:a(\d{2}-\d{2}-\d{4}):b(\.[a-z]+)' render={({match}) => (
+        <h2>
+          Date: {match.params.a} 
+          <br />
+          form: {match.params.b || 'bolanle'}
+        </h2>)} 
+      />
     </div>
   </Router>
 )
