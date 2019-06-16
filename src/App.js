@@ -14,6 +14,7 @@ const Links = () => (
     <NavLink isActive={isActiveFunc} exact to='/'>Home</NavLink>
     <NavLink to={{pathname: '/about'}}>About</NavLink>
     <NavLink replace to='/contact'>Contact</NavLink>
+    <NavLink to='/page/112'>Page</NavLink>
   </nav>
 )
 
@@ -24,6 +25,8 @@ const App = () => (
       <Route exact path='/' component={Home} />
       <Route path='/about' render={() => <h1>About Page</h1>} />
       <Route path='/contact' render={() => <h1>Contact Page</h1>} />
+      {/* Adding the question mark to the end of the parameter on the route path makes it optional for the user */}
+      <Route path='/page/:number?' render={({match}) => (<h2>Display Number: {match.params.number}</h2>)} />
     </div>
   </Router>
 )
