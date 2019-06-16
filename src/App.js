@@ -1,10 +1,27 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, NavLink, Switch, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Switch, Link, Redirect, Prompt } from 'react-router-dom';
 import './App.css'
 
 const Home = () => <h1>Home</h1>
 
+class Form extends React.Component {
+  state = {dirty: false}
 
+  handleDirty = () => this.setState({dirty: true})
+
+  render () {
+    return (
+      <div>
+        <h1>The Form</h1>
+        <input type='text' onChange={this.handleDirty}/>
+        <Prompt 
+          when={this.state.dirty}
+          message={'You would lose all the data on this form if you change the change the page'}
+        />
+      </div>
+    )
+  }
+}
 
 const isActiveFunc = (match, location) => {
   console.log(match, location);
@@ -31,6 +48,7 @@ const Links = () => (
   <nav>
     <NavLink isActive={isActiveFunc} exact to='/'>Home</NavLink>
     <NavLink to={{pathname: '/about'}}>About</NavLink>
+    <NavLink to='/form'>Form</NavLink>
     <NavLink replace to='/contact'>Contact</NavLink>
     <NavLink to='/page/112'>Page</NavLink>
     <NavLink to='/12-12-2013.rr'>RegularExpressions</NavLink>
@@ -52,6 +70,7 @@ const App = () => (
       <Links />
       <Switch>
         <Route exact path='/' component={Home} />
+        <Route path='/form'component={Form} /> 
         <Route path='/about' render={() => <h1>About Page</h1>} />
         <Route path='/contact' render={() => <h1>Contact Page</h1>} />
         <Route path='/page/:number?' render={({match}) => (<h2>Display Number: {match.params.number}</h2>)} />
