@@ -1,14 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import './App.css'
 
 const Home = () => <h1>Home</h1>
 
 const Links = () => (
   <nav>
-    <Link to='/'>Home</Link>
-    <Link to={{pathname: '/about'}}>About</Link>
-    <Link replace to='/contact'>Contact</Link>
+    <NavLink exact to='/'>Home</NavLink>
+    <NavLink to={{pathname: '/about'}}>About</NavLink>
+    <NavLink replace to='/contact'>Contact</NavLink>
   </nav>
 )
 

@@ -7,15 +7,10 @@ nav {
   justify-content: space-evenly
 }
 
-.App-link {
-  color: #61dafb;
+a {
+  color: orange;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.active {
+  color: green;
 }
