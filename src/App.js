@@ -16,6 +16,8 @@ const Links = () => (
     <NavLink replace to='/contact'>Contact</NavLink>
     <NavLink to='/page/112'>Page</NavLink>
     <NavLink to='/12-12-2013.rr'>RegularExpressions</NavLink>
+    <NavLink to='/bantu/?id=123'>Bantu</NavLink>
+    <NavLink to={{pathname: '/bantu', search: 'id=456'}}>BBantu</NavLink>
   </nav>
 )
 
@@ -30,12 +32,15 @@ const App = () => (
       <Route path='/page/:number?' render={({match}) => (<h2>Display Number: {match.params.number}</h2>)} />
       {/* Using regular expressions to validate url matches */}
       <Route path='/:a(\d{2}-\d{2}-\d{4}):b(\.[a-z]+)' render={({match}) => (
-        <h2>
-          Date: {match.params.a} 
-          <br />
-          form: {match.params.b || 'bolanle'}
-        </h2>)} 
+        <h2>Date: {match.params.a}<br />form: {match.params.b || 'bolanle'}</h2>)} 
       />
+      <Route path='/bantu' render={({match, location}) => (
+        <div>
+          <h1>{JSON.stringify(match)}</h1> 
+          <h1>{JSON.stringify(location)}</h1>
+          <h1>{new URLSearchParams(location.search).get('id')}</h1>
+      </div>
+      )} />
     </div>
   </Router>
 )
