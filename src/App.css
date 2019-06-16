@@ -14,3 +14,10 @@ a {
 .active {
   color: green;
 }
+
+.submenu {
+  display: flex;
+  justify-content: space-evenly;
+  width: 70%;
+  margin: auto;
+}

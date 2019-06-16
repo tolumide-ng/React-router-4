@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Switch, Link } from 'react-router-dom';
 import './App.css'
 
 const Home = () => <h1>Home</h1>
@@ -8,6 +8,18 @@ const isActiveFunc = (match, location) => {
   console.log(match, location);
   return false;
 }
+
+const Menu = () => (
+  <div>
+    <h1>Welcome to Menu, Please find your choice</h1>
+    <div className='submenu'>
+      <Link to='/menu/foods'>Foods</Link>
+      <Link to='/menu/drinks'>Drinks</Link>
+      <Link to='/menu/sides'>Sides</Link>
+    </div>
+    <Route path='/menu/:section' render={({match}) => <h1>{match.params.section}</h1>}/>
+  </div>
+)
 
 const Links = () => (
   <nav>
@@ -19,6 +31,7 @@ const Links = () => (
     <NavLink to='/bantu/?id=123'>Bantu</NavLink>
     <NavLink to={{pathname: '/bantu', search: 'id=456'}}>BBantu</NavLink>
     <NavLink to='/aPageThatDoesNotExist'>Exist?</NavLink>
+    <NavLink to='/menu'>Menu</NavLink>
   </nav>
 )
 
@@ -43,6 +56,7 @@ const App = () => (
             <h1>{new URLSearchParams(location.search).get('id')}</h1>
         </div>
         )} />
+        <Route path='/menu' component={Menu} />
         <Route render={() => <h1>Page Not Found</h1>}/>
       </Switch>
     </div>
